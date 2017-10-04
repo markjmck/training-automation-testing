@@ -1,0 +1,19 @@
+nohup.out
+### eclipse ###
+**/.classpath
+**/.project
+**/.settings/
+**/.metadata/
+**/target/
+**/build/
+**/eclipse-target/
+**/bin/
+**/.factorypath
+**/.gitignore
+**/classes
+
+### intellij ###
+**/*.iml
+**/.idea
+**/*.ipr
+**/*.iws
