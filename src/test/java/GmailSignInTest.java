@@ -85,19 +85,21 @@ public class GmailSignInTest {
         //3.1 Add a wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //4. Fill in subject
-//        WebElement subjectBox = driver.findElement(By.cssSelector());
-//        final String subject = "Test Sending Email";
-//        subjectBox.clear();
-//        subjectBox.sendKeys(subject);
-//        //5. Fill in email body
-//        WebElement bodyText= driver.findElement(By.cssSelector());
-//        final String emailBody = "Hello Testers!";
-//        bodyText.clear();
-//        bodyText.sendKeys(emailBody);
-//        //6. Click Send
-//        WebElement sendButton= driver.findElement(By.cssSelector());
-//        sendButton.click();
-//        //7. Click Inbox again
+        WebElement subjectBox = driver.findElement(By.cssSelector("input[name='subjectbox']"));
+        final String subject = "Test Sending Email";
+        subjectBox.clear();
+        subjectBox.sendKeys(subject);
+        //5. Fill in email body
+        WebElement bodyText= driver.findElement(By.cssSelector("div[aria-label='Message Body']"));
+        final String emailBody = "Hello Testers!";
+        bodyText.clear();
+        bodyText.sendKeys(emailBody);
+        //5.1 Add Wait
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //6. Click Send
+        WebElement sendButton= driver.findElement(By.cssSelector("div[aria-label*=\"Send\"]"));
+        sendButton.click();
+//      7. Click Inbox again
 //        WebElement inboxButton= driver.findElement(By.cssSelector());
 //        inboxButton.click();
 //        //8. Click email
