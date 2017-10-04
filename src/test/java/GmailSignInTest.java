@@ -26,13 +26,13 @@ public class GmailSignInTest {
         //2. Fill in Username
         WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
         usernameTextbox.clear();
-        usernameTextbox.sendKeys("markjmck3@gmail.com");
+        usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
         //2.1 click next
         driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
         //2.2 Add a wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //3. Fill in password
-        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("");
+        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
         //3.1 Add await
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //4. Click Sign in
@@ -63,10 +63,10 @@ public class GmailSignInTest {
         driver.get("http://www.gmail.com");
         WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
         usernameTextbox.clear();
-        usernameTextbox.sendKeys("markjmck3@gmail.com");
+        usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
         driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("");
+        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.RveJvd.snByac")));
@@ -81,33 +81,33 @@ public class GmailSignInTest {
         //3. fill in recipient
         WebElement recipient = driver.findElement(By.cssSelector("textarea[name='to']"));
         recipient.clear();
-        recipient.sendKeys("markjmck3@gmail.com");
+        recipient.sendKeys("automationtestingtraining12@gmail.com");
         //3.1 Add a wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //4. Fill in subject
-        WebElement subjectBox = driver.findElement(By.cssSelector());
-        final String subject = "Test Sending Email";
-        subjectBox.clear();
-        subjectBox.sendKeys(subject);
-        //5. Fill in email body
-        WebElement bodyText= driver.findElement(By.cssSelector());
-        final String emailBody = "Hello Testers!";
-        bodyText.clear();
-        bodyText.sendKeys(emailBody);
-        //6. Click Send
-        WebElement sendButton= driver.findElement(By.cssSelector());
-        sendButton.click();
-        //7. Click Inbox again
-        WebElement inboxButton= driver.findElement(By.cssSelector());
-        inboxButton.click();
-        //8. Click email
-        WebElement newEmail = driver.findElement(By.cssSelector());
-        newEmail.click();
-        //9. Verify the email subject and email body is correct
-        WebElement subjectText = driver.findElement(By.cssSelector());
-        Assert.assertEquals("Subject should match", subject, subjectText.getText());
-        WebElement bodyTextReceived = driver.findElement(By.cssSelector());
-        Assert.assertEquals("Subject should match", emailBody, bodyTextReceived.getText());
-        //10.Sign out
+//        WebElement subjectBox = driver.findElement(By.cssSelector());
+//        final String subject = "Test Sending Email";
+//        subjectBox.clear();
+//        subjectBox.sendKeys(subject);
+//        //5. Fill in email body
+//        WebElement bodyText= driver.findElement(By.cssSelector());
+//        final String emailBody = "Hello Testers!";
+//        bodyText.clear();
+//        bodyText.sendKeys(emailBody);
+//        //6. Click Send
+//        WebElement sendButton= driver.findElement(By.cssSelector());
+//        sendButton.click();
+//        //7. Click Inbox again
+//        WebElement inboxButton= driver.findElement(By.cssSelector());
+//        inboxButton.click();
+//        //8. Click email
+//        WebElement newEmail = driver.findElement(By.cssSelector());
+//        newEmail.click();
+//        //9. Verify the email subject and email body is correct
+//        WebElement subjectText = driver.findElement(By.cssSelector());
+//        Assert.assertEquals("Subject should match", subject, subjectText.getText());
+//        WebElement bodyTextReceived = driver.findElement(By.cssSelector());
+//        Assert.assertEquals("Subject should match", emailBody, bodyTextReceived.getText());
+//        //10.Sign out
     }
 }
