@@ -52,4 +52,42 @@ public class GmailSignInTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")));
         Assert.assertTrue("Sign in button should exist", driver.findElements(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).size() > 0);
     }
+
+    @Test
+    public void gmailSendAndReceiveEmailTest(){
+        //1. Launch Gmail and sign in
+        System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--start-maximized");
+        WebDriver driver = new ChromeDriver(options);
+        driver.get("http://www.gmail.com");
+        WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
+        usernameTextbox.clear();
+        usernameTextbox.sendKeys("markjmck3@gmail.com");
+        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("Bendunnegym321");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.RveJvd.snByac")));
+        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Assert.assertTrue("Inbox should exist",driver.findElements(By.partialLinkText("Inbox")).size() > 0);
+        //2. Click Compose
+        WebElement composeButton = driver.findElement(By.cssSelector("div[role='button'][gh='cm']"));
+        composeButton.click();
+        //2.1 add a wait
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //3. fill in recipient
+        WebElement recipient = driver.findElement(By.cssSelector("textarea[name='to']"));
+        recipient.clear();
+        recipient.sendKeys("markjmck3@gmail.com");
+        //4. Fill in subject
+        //5. Fill in email body
+        //6. Click Send
+        //7. Click Inbox again
+        //8. Click email
+        //9. Verify the email subject and email body is correct
+        //10.Sign out
+    }
 }
