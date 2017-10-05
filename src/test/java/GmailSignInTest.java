@@ -18,113 +18,47 @@ public class GmailSignInTest {
     @Test
     public void gmailLoginShouldBeSuccessful() {
         //1. Go to Gmail Website
-        System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        WebDriver driver = new ChromeDriver(options);
-        driver.get("http://www.gmail.com");
-        //2. Fill in Username
-        WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
-        usernameTextbox.clear();
-        usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
-        //2.1 click next
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
-        //2.2 Add a wait
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //3. Fill in password
-        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
-        //3.1 Add await
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //4. Click Sign in
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.RveJvd.snByac")));
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //5. Verify user did sign in
-        Assert.assertTrue("Inbox should exist",driver.findElements(By.partialLinkText("Inbox")).size() > 0);
+        LaunchGmail test = new LaunchGmail();
+        WebDriver driver = test.launchWebsite();
+        //2. Fill in details and sign in
+        SignIn testingSignIn = new SignIn();
+        testingSignIn.signIn(driver);
         //6. Sign out
-        WebElement profileButton = driver.findElement(By.cssSelector("span[class='gb_7a gbii']"));
-        profileButton.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement signOutButton = driver.findElement(By.id("gb_71"));
-        signOutButton.click();
+        SignOut testingSignOut = new SignOut();
+        testingSignOut.SignOut(driver);
         //7. Verify user did sign out
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")));
-        Assert.assertTrue("Sign in button should exist", driver.findElements(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).size() > 0);
+        VerifySignOut testVerifySigningOut = new VerifySignOut();
+        testVerifySigningOut.verifySignOut(driver);
     }
 
     @Test
     public void gmailSendAndReceiveEmailTest(){
         //1. Launch Gmail and sign in
-        System.setProperty("webdriver.chrome.driver", "C:\\chromeDriver\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
-        WebDriver driver = new ChromeDriver(options);
-        driver.get("http://www.gmail.com");
-        WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
-        usernameTextbox.clear();
-        usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.RveJvd.snByac")));
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        Assert.assertTrue("Inbox should exist",driver.findElements(By.partialLinkText("Inbox")).size() > 0);
-        //2. Click Compose
-        WebElement composeButton = driver.findElement(By.cssSelector("div[role='button'][gh='cm']"));
-        composeButton.click();
-        //2.1 add a wait
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        //3. fill in recipient
-        WebElement recipient = driver.findElement(By.cssSelector("textarea[name='to']"));
-        recipient.clear();
-        recipient.sendKeys("automationtestingtraining12@gmail.com");
-        //3.1 Add a wait
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        //4. Fill in subject
-        WebElement subjectBox = driver.findElement(By.cssSelector("input[name='subjectbox']"));
-        final String subject = "Test Sending Email";
-        subjectBox.clear();
-        subjectBox.sendKeys(subject);
-        //4.1 Add a wait
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        //5. Fill in email body
-        WebElement bodyText= driver.findElement(By.cssSelector("div[aria-label='Message Body']"));
-        final String emailBody = "Hello Testers!";
-        bodyText.sendKeys(emailBody);
-        //5.1 Add Wait
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //6. Click Send
-        WebElement sendButton= driver.findElement(By.cssSelector("div[aria-label*=\"Send\"]"));
-        sendButton.click();
-        //7. Click Inbox again
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Inbox (1)")));
-        WebElement inboxButton= driver.findElement(By.linkText("Inbox (1)"));
-        inboxButton.click();
-        //8. Click email
-        WebElement newEmail = driver.findElement(By.cssSelector("div[class='y6'] span[id] b"));
-        newEmail.click();
-        //9. Verify the email subject and email body is correct
-        WebElement subjectText = driver.findElement(By.cssSelector("h2[class='hP']"));
-        Assert.assertEquals("Subject should match", subject, subjectText.getText());
-        WebElement bodyTextReceived = driver.findElement(By.cssSelector("div[class='nH aHU'] div[dir='ltr'"));
-        Assert.assertEquals("Subject should match", emailBody, bodyTextReceived.getText());
-        //10. Back To Inbox
-        WebElement backToInbox = driver.findElement(By.cssSelector("div[class='ar6 T-I-J3 J-J5-Ji']"));
-        backToInbox.click();
-        //10.1 Add a wait
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        //11.Sign out
-        WebElement profileButton = driver.findElement(By.cssSelector("span[class='gb_7a gbii']"));
-        profileButton.click();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        WebElement signOutButton = driver.findElement(By.id("gb_71"));
-        signOutButton.click();
-        //12. Verify user did sign out
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")));
-        Assert.assertTrue("Sign in button should exist", driver.findElements(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).size() > 0);
+        LaunchGmail goToWebsite = new LaunchGmail();
+        WebDriver driver = goToWebsite.launchWebsite();
+        //2. Sign In and Verify
+        SignIn signIn = new SignIn();
+        signIn.signIn(driver);
+        //3. Compose Email
+        ComposeEmail compose = new ComposeEmail();
+        compose.composeEmail(driver);
+        //4. Click Inbox again
+        ClickInbox inboxClick = new ClickInbox();
+        inboxClick.clickInboxAgain(driver);
+        //5. Click email
+        ClickNewEmail clickEmail = new ClickNewEmail();
+        clickEmail.clickEmail(driver);
+        //6. Verify the email subject and email body is correct
+        VerifySubAndBody verifyEmailSubAndBody = new VerifySubAndBody();
+        verifyEmailSubAndBody.verify(driver);
+        //7. Back To Inbox
+        ClickInbox returnToInbox = new ClickInbox();
+        returnToInbox.backToInbox(driver);
+        //8.Sign out
+        SignOut signOut = new SignOut();
+        signOut.SignOut(driver);
+        //9.Verify User Did Sign Out
+        VerifySignOut verifySignOut = new VerifySignOut();
+        verifySignOut.verifySignOut(driver);
     }
 }
