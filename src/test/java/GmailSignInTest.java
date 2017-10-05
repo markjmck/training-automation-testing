@@ -108,10 +108,23 @@ public class GmailSignInTest {
         WebElement newEmail = driver.findElement(By.cssSelector("div[class='y6'] span[id] b"));
         newEmail.click();
         //9. Verify the email subject and email body is correct
-//        WebElement subjectText = driver.findElement(By.cssSelector());
-//        Assert.assertEquals("Subject should match", subject, subjectText.getText());
-//        WebElement bodyTextReceived = driver.findElement(By.cssSelector());
-//        Assert.assertEquals("Subject should match", emailBody, bodyTextReceived.getText());
-        //10.Sign out
+        WebElement subjectText = driver.findElement(By.cssSelector("h2[class='hP']"));
+        Assert.assertEquals("Subject should match", subject, subjectText.getText());
+        WebElement bodyTextReceived = driver.findElement(By.cssSelector("div[class='nH aHU'] div[dir='ltr'"));
+        Assert.assertEquals("Subject should match", emailBody, bodyTextReceived.getText());
+        //10. Back To Inbox
+        WebElement backToInbox = driver.findElement(By.cssSelector("div[class='ar6 T-I-J3 J-J5-Ji']"));
+        backToInbox.click();
+        //10.1 Add a wait
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //11.Sign out
+        WebElement profileButton = driver.findElement(By.cssSelector("span[class='gb_7a gbii']"));
+        profileButton.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebElement signOutButton = driver.findElement(By.id("gb_71"));
+        signOutButton.click();
+        //12. Verify user did sign out
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")));
+        Assert.assertTrue("Sign in button should exist", driver.findElements(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).size() > 0);
     }
 }
