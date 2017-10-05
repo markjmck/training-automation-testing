@@ -12,10 +12,10 @@ public class GmailSignInTest {
         //2. Fill in details and sign in
         SignIn testingSignIn = new SignIn();
         testingSignIn.signIn(driver);
-        //6. Sign out
+        //3. Sign out
         SignOut testingSignOut = new SignOut();
         testingSignOut.SignOut(driver);
-        //7. Verify user did sign out
+        //4. Verify user did sign out
         VerifySignOut testVerifySigningOut = new VerifySignOut();
         testVerifySigningOut.verifySignOut(driver);
     }
