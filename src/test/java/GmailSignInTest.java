@@ -4,12 +4,12 @@ import org.openqa.selenium.WebDriver;
 /** Created by Mark on 03/10/2017
  *
  */
-public class GmailSignInTest {
+public class GmailSignInTest extends LaunchGmailAndSignIn {
     WebDriver driver;
     @Test
     public void gmailLoginShouldBeSuccessful() {
         //1. Launch gmail and sign in
-        driver = LaunchGmailAndSignIn.launchAndSignIn();
+        driver = launchAndSignIn();
         //2. Sign Out
         SignOut testingSignOut = new SignOut();
         testingSignOut.SignOut(driver);
@@ -21,7 +21,7 @@ public class GmailSignInTest {
     @Test
     public void gmailSendAndReceiveEmailTest(){
         //1. Launch Gmail and Sign In
-        driver = LaunchGmailAndSignIn.launchAndSignIn();
+        driver = launchAndSignIn();
         //2. Compose Email
         ComposeEmail compose = new ComposeEmail();
         compose.composeEmail(driver);
