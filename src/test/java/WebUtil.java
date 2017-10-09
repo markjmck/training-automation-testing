@@ -3,7 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.concurrent.TimeUnit;
 
 public class WebUtil {
@@ -18,7 +17,7 @@ public class WebUtil {
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-    public static void implicitWait(WebDriver driver){
+    public static void implicitWait(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 }
