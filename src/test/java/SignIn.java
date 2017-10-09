@@ -14,7 +14,7 @@ public class SignIn {
         usernameTextbox.clear();
         usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
         //1.1 click next
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
+        WebUtil.click(driver,By.cssSelector("span.RveJvd.snByac") );
         //1.2 Add a wait
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //2. Fill in password
@@ -23,8 +23,8 @@ public class SignIn {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //3. Click Sign in
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span.RveJvd.snByac")));
-        driver.findElement(By.cssSelector("span.RveJvd.snByac")).click();
+        WebUtil.waitForElementVisible(driver, By.cssSelector("span.RveJvd.snByac"));
+        WebUtil.click(driver, By.cssSelector("span.RveJvd.snByac") );
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //4. Verify user did sign in
         Assert.assertTrue("Inbox should exist", driver.findElements(By.partialLinkText("Inbox")).size() > 0);
