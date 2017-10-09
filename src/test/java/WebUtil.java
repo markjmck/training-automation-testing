@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.concurrent.TimeUnit;
 
 public class WebUtil {
+
     final static int WAIT_TIME_OUT = 30;
     public static void click(WebDriver driver, By by){
         WebElement element = driver.findElement(by);
@@ -19,5 +20,12 @@ public class WebUtil {
 
     public static void implicitWait(WebDriver driver) {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    }
+
+    public static String WriteText(WebDriver driver, String text, By by){
+        WebElement element = driver.findElement(by);
+        //element.clear();
+        element.sendKeys(text);
+        return text;
     }
 }

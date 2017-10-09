@@ -5,16 +5,17 @@ import org.openqa.selenium.WebElement;
 
 public class SignIn {
     public void signIn(WebDriver driver) {
+        String textToWrite = new String();
         //1. Enter email address
-        WebElement usernameTextbox = driver.findElement(By.id("identifierId"));
-        usernameTextbox.clear();
-        usernameTextbox.sendKeys("automationtestingtraining12@gmail.com");
+        textToWrite = "automationtestingtraining12@gmail.com";
+        WebUtil.WriteText(driver, textToWrite, By.id("identifierId") );
         //1.1 click next
         WebUtil.click(driver,By.cssSelector("span.RveJvd.snByac") );
         //1.2 Add a wait
         WebUtil.implicitWait(driver);
         //2. Fill in password
-        driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
+        textToWrite = "testingPurposes";
+        WebUtil.WriteText(driver, textToWrite, By.xpath("//*[@id='password']/div[1]/div/div[1]/input") );
         //2.1 Add await
         WebUtil.implicitWait(driver);
         //3. Click Sign in
