@@ -16,16 +16,15 @@ public class SignIn {
         //1.1 click next
         WebUtil.click(driver,By.cssSelector("span.RveJvd.snByac") );
         //1.2 Add a wait
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebUtil.implicitWait(driver);
         //2. Fill in password
         driver.findElement(By.xpath("//*[@id='password']/div[1]/div/div[1]/input")).sendKeys("testingPurposes");
         //2.1 Add await
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebUtil.implicitWait(driver);
         //3. Click Sign in
-        WebDriverWait wait = new WebDriverWait(driver, 10);
         WebUtil.waitForElementVisible(driver, By.cssSelector("span.RveJvd.snByac"));
         WebUtil.click(driver, By.cssSelector("span.RveJvd.snByac") );
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        WebUtil.implicitWait(driver);
         //4. Verify user did sign in
         Assert.assertTrue("Inbox should exist", driver.findElements(By.partialLinkText("Inbox")).size() > 0);
     }
