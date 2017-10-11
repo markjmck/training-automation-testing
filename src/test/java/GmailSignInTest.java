@@ -1,4 +1,5 @@
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /** Created by Mark on 03/10/2017
@@ -30,12 +31,14 @@ public class GmailSignInTest extends LaunchGmailAndSignIn {
         ClickInbox inboxClick = new ClickInbox();
         inboxClick.clickInboxAgain(driver);
         //4. Click email
+        WebUtil.waitForElementVisible(driver, By.cssSelector("div[class='y6'] span[id] b"));
         ClickNewEmail clickEmail = new ClickNewEmail();
         clickEmail.clickEmail(driver);
         //5. Verify the email subject and email body is correct
         VerifySubAndBody verifyEmailSubAndBody = new VerifySubAndBody();
         verifyEmailSubAndBody.verify(driver, emailArray);
         //6. Back To Inbox
+        WebUtil.implicitWait(driver);
         ClickInbox returnToInbox = new ClickInbox();
         returnToInbox.backToInbox(driver);
         //7.Sign out
