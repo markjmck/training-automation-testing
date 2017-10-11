@@ -28,4 +28,8 @@ public class WebUtil {
         element.sendKeys(text);
         return text;
     }
+
+    public static void closeWindow(WebDriver driver){
+        driver.quit();
+    }
 }

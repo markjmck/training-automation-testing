@@ -42,10 +42,14 @@ public class GmailSignInTest extends LaunchGmailAndSignIn {
         ClickInbox returnToInbox = new ClickInbox();
         returnToInbox.backToInbox(driver);
         //7.Sign out
+        WebUtil.implicitWait(driver);
         SignOut signOut = new SignOut();
         signOut.SignOut(driver);
         //8.Verify User Did Sign Out
         VerifySignOut verifySignOut = new VerifySignOut();
         verifySignOut.verifySignOut(driver);
+        //9.Quit Window
+        WebUtil.implicitWait(driver);
+        WebUtil.closeWindow(driver);
     }
 }

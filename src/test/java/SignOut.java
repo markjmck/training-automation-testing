@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 
 public class SignOut {
@@ -6,5 +7,10 @@ public class SignOut {
         WebUtil.click(driver, By.cssSelector("span[class='gb_7a gbii']") );
         WebUtil.implicitWait(driver);
         WebUtil.click(driver, By.id("gb_71"));
+        try{
+            driver.switchTo().alert().accept();
+        }catch(NoAlertPresentException alert){
+
+        }
     }
 }
