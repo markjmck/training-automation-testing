@@ -1,4 +1,7 @@
+import com.appsenseca.categories.Critical;
+import com.appsenseca.categories.Major;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -7,6 +10,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class GmailSignInTest extends LaunchGmailAndSignIn {
     WebDriver driver;
+    @Category(Critical.class)
     @Test
     public void gmailLoginShouldBeSuccessful() {
         //1. Launch gmail and sign in
@@ -17,8 +21,12 @@ public class GmailSignInTest extends LaunchGmailAndSignIn {
         //3`. Verify user did sign out
         VerifySignOut testVerifySigningOut = new VerifySignOut();
         testVerifySigningOut.verifySignOut(driver);
+        //4.Quit Window
+        WebUtil.implicitWait(driver);
+        WebUtil.closeWindow(driver);
     }
 
+    @Category(Major.class)
     @Test
     public void gmailSendAndReceiveEmailTest(){
         String[] emailArray = new String[2];
