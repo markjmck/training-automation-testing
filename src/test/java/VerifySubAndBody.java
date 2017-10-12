@@ -10,5 +10,4 @@ public class VerifySubAndBody {
         WebElement bodyTextReceived = driver.findElement(By.cssSelector("div[class='nH aHU'] div[dir='ltr'"));
         Assert.assertEquals("Subject should match", emailArray[1], bodyTextReceived.getText());
     }
-
 }
